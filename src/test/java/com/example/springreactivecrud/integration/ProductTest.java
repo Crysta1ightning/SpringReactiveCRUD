@@ -1,8 +1,8 @@
-package com.example.springreactivecrud;
+package com.example.springreactivecrud.integration;
 
 import com.example.springreactivecrud.entity.Product;
 import com.example.springreactivecrud.repo.ProductRepo;
-import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -21,10 +21,11 @@ public class ProductTest {
     @Autowired
     private ProductRepo productRepo;
 
-    @BeforeEach
+    @AfterEach
     public void before() {
         System.out.println("Before Each Test");
-        productRepo.deleteAll().subscribe();
+        productRepo.deleteProductByName("Apple").subscribe();
+        productRepo.deleteProductByName("Banana").subscribe();
     }
 
     @Test
